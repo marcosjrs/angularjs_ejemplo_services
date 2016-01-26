@@ -9,17 +9,17 @@
 <body>
     <div ng-app="app">
         <div>Formulario para añadir más objetos al servicio:</div>
-        <div ng-controller="ContactController">
+        <div ng-controller="ContactController as controler">
             <form class="well">
                 <label>Nombre</label>
-                <input type="text" nombre="nombre" ng-model="nuevocontacto.nombre" />
+                <input type="text" nombre="nombre" ng-model="controler.nuevocontacto.nombre" />
                 <label>Email</label>
-                <input type="text" nombre="email" ng-model="nuevocontacto.email" />
+                <input type="text" nombre="email" ng-model="controler.nuevocontacto.email" />
                 <label>Teléfono</label>
-                <input type="text" nombre="telefono" ng-model="nuevocontacto.telefono" />
+                <input type="text" nombre="telefono" ng-model="controler.nuevocontacto.telefono" />
                 <br/>
-                <input type="hidden" ng-model="nuevocontacto.id" />
-                <input type="button" value="Save" ng-click="saveContact()" class="btn btn-primary" />
+                <input type="hidden" ng-model="controler.nuevocontacto.id" />
+                <input type="button" value="Save" ng-click="controler.saveContact()" class="btn btn-primary" />
             </form>
             
             <div>Datos del servicio en el controlador principal:</div>
@@ -33,11 +33,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="contacto in contactos">
+                    <tr ng-repeat="contacto in controler.contactos">
                         <td>{{ contacto.nombre }}</td>
                         <td>{{ contacto.email }}</td>
                         <td>{{ contacto.telefono }}</td>
-                        <td> <a href="javascript:void(0)" ng-click="edit(contacto.id)">Editar</a> | <a href="javascript:void(0)" ng-click="delete(contacto.id)">Borrar</a>
+                        <td> <a href="javascript:void(0)" ng-click="controler.edit(contacto.id)">Editar</a> | <a href="javascript:void(0)" ng-click="controler.delete(contacto.id)">Borrar</a>
                         </td>
                     </tr>
                 </tbody>
@@ -45,7 +45,7 @@
         </div>
     
         <div>Eco de los datos del servicio en otro controlador, sin hacer watch():</div>
-        <div ng-controller="CheckServiceController">
+        <div ng-controller="CheckServiceController as checker">
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -55,7 +55,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="contacto in contactos">
+                        <tr ng-repeat="contacto in checker.contactos">
                             <td>{{ contacto.nombre }}</td>
                             <td>{{ contacto.email }}</td>
                             <td>{{ contacto.telefono }}</td>

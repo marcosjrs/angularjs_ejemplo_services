@@ -54,28 +54,29 @@ module.service('ContactService', function () {
 });
  
 module
-.controller('ContactController', function ($scope, ContactService) {
+.controller('ContactController', function (ContactService) {
+    var that = this; 
+    that.contactos = ContactService.list();
  
-    $scope.contactos = ContactService.list();
- 
-    $scope.saveContact = function () {
-        ContactService.save($scope.nuevocontacto);
-        $scope.nuevocontacto = {};
+    that.saveContact = function () {
+        ContactService.save(that.nuevocontacto);
+        that.nuevocontacto = {};
     }
  
  
-    $scope.delete = function (id) { 
+    that.delete = function (id) { 
         ContactService.delete(id);
-        if ($scope.nuevocontacto.id == id) $scope.nuevocontacto = {};
+        if (that.nuevocontacto.id == id) that.nuevocontacto = {};
     }
  
  
-    $scope.edit = function (id) {
-        $scope.nuevocontacto = angular.copy(ContactService.get(id));
+    that.edit = function (id) {
+        that.nuevocontacto = angular.copy(ContactService.get(id));
     }
 })
-.controller('CheckServiceController', function ($scope, ContactService) { 
-    $scope.contactos = ContactService.list();
+.controller('CheckServiceController', function (ContactService) { 
+    var that = this; 
+    that.contactos = ContactService.list();
 })
 
 
