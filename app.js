@@ -53,7 +53,8 @@ module.service('ContactService', function () {
     }
 });
  
-module.controller('ContactController', function ($scope, ContactService) {
+module
+.controller('ContactController', function ($scope, ContactService) {
  
     $scope.contactos = ContactService.list();
  
@@ -73,5 +74,9 @@ module.controller('ContactController', function ($scope, ContactService) {
         $scope.nuevocontacto = angular.copy(ContactService.get(id));
     }
 })
+.controller('CheckServiceController', function ($scope, ContactService) { 
+    $scope.contactos = ContactService.list();
+})
+
 
 /* fuente original: https://jsfiddle.net/viralpatel/72vT5*/
